@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="fall_reliefModelStoreContainer" CdmEntityContainer="fall_reliefEntities">
+    <EntitySetMapping Name="tbl_RiskAss_Assessment">
+      <EntityTypeMapping TypeName="fall_reliefModel.tbl_RiskAss_Assessment">
+        <MappingFragment StoreEntitySet="tbl_RiskAss_Assessment">
+          <ScalarProperty Name="TotalNoOfQuestions" ColumnName="TotalNoOfQuestions" />
+          <ScalarProperty Name="AssessmentTypeID" ColumnName="AssessmentTypeID" />
+          <ScalarProperty Name="AssessmentType" ColumnName="AssessmentType" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_RiskAss_Session">
+      <EntityTypeMapping TypeName="fall_reliefModel.tbl_RiskAss_Session">
+        <MappingFragment StoreEntitySet="tbl_RiskAss_Session">
+          <ScalarProperty Name="AssessmentNo" ColumnName="AssessmentNo" />
+          <ScalarProperty Name="sessionID" ColumnName="sessionID" />
+          <ScalarProperty Name="timeStamp" ColumnName="timeStamp" />
+          <ScalarProperty Name="AssessmentTypeID" ColumnName="AssessmentTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_RiskAss_Questions">
+      <EntityTypeMapping TypeName="fall_reliefModel.tbl_RiskAss_Questions">
+        <MappingFragment StoreEntitySet="tbl_RiskAss_Questions">
+          <ScalarProperty Name="RiskScore" ColumnName="RiskScore" />
+          <ScalarProperty Name="AnswerType" ColumnName="AnswerType" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="QuestionSection" ColumnName="QuestionSection" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_RiskAss_AssQuestion">
+      <EntityTypeMapping TypeName="fall_reliefModel.tbl_RiskAss_AssQuestion">
+        <MappingFragment StoreEntitySet="tbl_RiskAss_AssQuestion">
+          <ScalarProperty Name="QuestionNumber" ColumnName="QuestionNumber" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="AssessmentTypeID" ColumnName="AssessmentTypeID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_RiskAss_ResponseChoice">
+      <EntityTypeMapping TypeName="fall_reliefModel.tbl_RiskAss_ResponseChoice">
+        <MappingFragment StoreEntitySet="tbl_RiskAss_ResponseChoice">
+          <ScalarProperty Name="actionRequired" ColumnName="actionRequired" />
+          <ScalarProperty Name="RiskScore" ColumnName="RiskScore" />
+          <ScalarProperty Name="Response" ColumnName="Response" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_RiskAss_RiskLevel">
+      <EntityTypeMapping TypeName="fall_reliefModel.vw_RiskAss_RiskLevel">
+        <MappingFragment StoreEntitySet="vw_RiskAss_RiskLevel">
+          <ScalarProperty Name="RiskLevel" ColumnName="RiskLevel" />
+          <ScalarProperty Name="RiskScore" ColumnName="RiskScore" />
+          <ScalarProperty Name="AssessmentType" ColumnName="AssessmentType" />
+          <ScalarProperty Name="AssessmentTypeID" ColumnName="AssessmentTypeID" />
+          <ScalarProperty Name="AssessmentNo" ColumnName="AssessmentNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_RiskAss_RiskStatement">
+      <EntityTypeMapping TypeName="fall_reliefModel.vw_RiskAss_RiskStatement">
+        <MappingFragment StoreEntitySet="vw_RiskAss_RiskStatement">
+          <ScalarProperty Name="Risk_Statement" ColumnName="Risk_Statement" />
+          <ScalarProperty Name="Risk" ColumnName="Risk" />
+          <ScalarProperty Name="QuestionSection" ColumnName="QuestionSection" />
+          <ScalarProperty Name="AssessmentType" ColumnName="AssessmentType" />
+          <ScalarProperty Name="AssessmentNo" ColumnName="AssessmentNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_RiskAss_AssessmentResponse">
+      <EntityTypeMapping TypeName="fall_reliefModel.tbl_RiskAss_AssessmentResponse">
+        <MappingFragment StoreEntitySet="tbl_RiskAss_AssessmentResponse">
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="responseID" ColumnName="responseID" />
+          <ScalarProperty Name="AssQuestionID" ColumnName="AssQuestionID" />
+          <ScalarProperty Name="AssessmentNo" ColumnName="AssessmentNo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_RiskAss_RiskLevel">
+      <EntityTypeMapping TypeName="fall_reliefModel.tbl_RiskAss_RiskLevel">
+        <MappingFragment StoreEntitySet="tbl_RiskAss_RiskLevel">
+          <ScalarProperty Name="UpperLimit" ColumnName="UpperLimit" />
+          <ScalarProperty Name="LowerLimit" ColumnName="LowerLimit" />
+          <ScalarProperty Name="RiskLevel" ColumnName="RiskLevel" />
+          <ScalarProperty Name="AssessmentTypeID" ColumnName="AssessmentTypeID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ActionPlan_FoodNutrient">
+      <EntityTypeMapping TypeName="fall_reliefModel.tbl_ActionPlan_FoodNutrient">
+        <MappingFragment StoreEntitySet="tbl_ActionPlan_FoodNutrient">
+          <ScalarProperty Name="Rank" ColumnName="Rank" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="NutrientName" ColumnName="NutrientName" />
+          <ScalarProperty Name="NutrientID" ColumnName="NutrientID" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ActionPlan_HomeSafety">
+      <EntityTypeMapping TypeName="fall_reliefModel.tbl_ActionPlan_HomeSafety">
+        <MappingFragment StoreEntitySet="tbl_ActionPlan_HomeSafety">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Who" ColumnName="Who" />
+          <ScalarProperty Name="Location_Room" ColumnName="Location_Room" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Risk" ColumnName="Risk" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ActionPlan_Nutrient">
+      <EntityTypeMapping TypeName="fall_reliefModel.tbl_ActionPlan_Nutrient">
+        <MappingFragment StoreEntitySet="tbl_ActionPlan_Nutrient">
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="NutrientName" ColumnName="NutrientName" />
+          <ScalarProperty Name="Nutrient_RawName" ColumnName="Nutrient_RawName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ActionPlan_Nutrition">
+      <EntityTypeMapping TypeName="fall_reliefModel.tbl_ActionPlan_Nutrition">
+        <MappingFragment StoreEntitySet="tbl_ActionPlan_Nutrition">
+          <ScalarProperty Name="NutrientID" ColumnName="NutrientID" />
+          <ScalarProperty Name="Nutrient" ColumnName="Nutrient" />
+          <ScalarProperty Name="Risk" ColumnName="Risk" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ActionPlan_RiskStatement">
+      <EntityTypeMapping TypeName="fall_reliefModel.tbl_ActionPlan_RiskStatement">
+        <MappingFragment StoreEntitySet="tbl_ActionPlan_RiskStatement">
+          <ScalarProperty Name="Risk_Statement" ColumnName="Risk_Statement" />
+          <ScalarProperty Name="Risk" ColumnName="Risk" />
+          <ScalarProperty Name="QuestionNo" ColumnName="QuestionNo" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_ActionPlan_HomeSafety">
+      <EntityTypeMapping TypeName="fall_reliefModel.vw_ActionPlan_HomeSafety">
+        <MappingFragment StoreEntitySet="vw_ActionPlan_HomeSafety">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Who" ColumnName="Who" />
+          <ScalarProperty Name="Location_Room" ColumnName="Location_Room" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Risk" ColumnName="Risk" />
+          <ScalarProperty Name="AssessmentNo" ColumnName="AssessmentNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_ActionPlan_Nutrition">
+      <EntityTypeMapping TypeName="fall_reliefModel.vw_ActionPlan_Nutrition">
+        <MappingFragment StoreEntitySet="vw_ActionPlan_Nutrition">
+          <ScalarProperty Name="Food_Rank" ColumnName="Food Rank" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+          <ScalarProperty Name="Nutrient" ColumnName="Nutrient" />
+          <ScalarProperty Name="risk" ColumnName="risk" />
+          <ScalarProperty Name="AssessmentNo" ColumnName="AssessmentNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,95 @@
+﻿@model RiskAssessment.Models.SessionModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fall Relief</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="~/Content/open-iconic-bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/owl.theme.default.min.css" rel="stylesheet" />
+
+    <link href="~/Content/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Content/aos.css" rel="stylesheet" />
+
+    <link href="~/Content/ionicons.min.css" rel="stylesheet" />
+
+    <link href="~/Content/flaticon.css" rel="stylesheet" />
+
+    <link href="~/Content/icomoon.css" rel="stylesheet" />
+
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <nav class="navbar px-md-0 navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-dark" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/Home/Index">Fall Relief </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="/Home/Index" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="/Home/Assessment" class="nav-link">Assessment</a></li>
+                    <li class="nav-item"><a href="/Home/Health Facility" class="nav-link">Health Facility</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+
+        
+        <div class="row">
+            <div class="col-md-6">
+                <h2>@ViewBag.AssessmentType</h2>
+
+
+                <p>
+                    Most of us will have experienced a fall at some point. 
+                    Indeed, there is no denying that the chance
+                    of falling does increase as we age. 
+                    </p>
+                <p>However, we should not take falls as a normal part of getting
+                    older into granted. In fact, we can mitigate it.
+                    Falls are caused by a series of risk factors that can affect a person of any age. The causes are
+                    summarized as being personal risk factors or environmental risk factors. Personal risk factors are
+                    factors that affect you and your body while environmental risk factors relate to the world around
+                    you.
+                    </p>
+                <p>
+                    Here is the point. By conducting a multi-faceted assessment, the fall rate can be reduced by 30-
+                    40%, followed by multi-factorial interventions.
+                    Therefore, our “Fall Relief” assessment can help you obtain a more detailed analysis of the falling
+                    for the people you care about so much.</p>
+                <p>We are here for:
+                    - Identify if the people you love is at risk of falling
+                    - Specify the causes of falls in an individual
+                    - Provide baseline insights of carer-specific areas of risk
+                    - Inform personalize preventive measures and care plans.
+                    As a person&#39;s health and circumstances change, reassessment is necessary.
+                </p>
+
+            </div>
+        </div>
+
+        @if (Model != null)
+        {
+            using (Html.BeginForm("RiskAssessment", "Home", FormMethod.Post, new { @id = "assessmentRegister" }))
+            {
+                @Html.HiddenFor(x => Model.AssessmentTypeID)
+
+                <a href="javascript:viod(0);" onclick="getElementById('assessmentRegister').submit();" class="btn btn-primary">Start Assessment</a>
+            }
+        }
+
+
+    </div>
+    </body>
+    </html>

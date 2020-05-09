@@ -1,0 +1,78 @@
+﻿@model RiskAssessment.Models.SessionModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fall Relief</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="~/Content/open-iconic-bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/owl.theme.default.min.css" rel="stylesheet" />
+
+    <link href="~/Content/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Content/aos.css" rel="stylesheet" />
+
+    <link href="~/Content/ionicons.min.css" rel="stylesheet" />
+
+    <link href="~/Content/flaticon.css" rel="stylesheet" />
+
+    <link href="~/Content/icomoon.css" rel="stylesheet" />
+
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+
+    <link href="~/Content/progressbar.css" rel="stylesheet" />
+    <link href="~/Content/assessment.css" rel="stylesheet" />
+
+
+</head>
+<body>
+
+    <nav class="navbar px-md-0 navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-dark" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/Home/Index">Fall Relief </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="/Home/Index" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="/Home/Assessment" class="nav-link">Assessment</a></li>
+                    <li class="nav-item"><a href="/Home/Health Facility" class="nav-link">Health Facility</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    @using (Html.BeginForm("Instruction", "Home", FormMethod.Post))
+    {
+
+        <div class="container">
+
+
+
+            @*Create drop down to select the asessment type*@
+            <div class="form-group">
+                <div class="col-md-3">@Html.Label("Select Assessment:")</div>
+                <div class="col_md-5">
+                    @Html.DropDownListFor(x => x.AssessmentTypeID, new SelectList(ViewBag.Assessment, "AssessmentTypeID", "AssessmentType", Model.AssessmentTypeID))
+                    <button type="Submit" class="btn btn-primary">Proceed</button>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+    }
+    </body>
+
+    </html>

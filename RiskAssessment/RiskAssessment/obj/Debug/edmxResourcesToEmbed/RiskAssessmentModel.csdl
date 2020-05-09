@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="fall_reliefModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_RiskAss_Assessment">
+    <Key>
+      <PropertyRef Name="AssessmentTypeID" />
+    </Key>
+    <Property Name="AssessmentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AssessmentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="tbl_RiskAss_AssQuestion" Relationship="fall_reliefModel.FK__tbl_RiskA__Asses__151B244E" FromRole="tbl_RiskAss_Assessment" ToRole="tbl_RiskAss_AssQuestion" />
+    <NavigationProperty Name="tbl_RiskAss_Session" Relationship="fall_reliefModel.FK__tbl_RiskA__Asses__19DFD96B" FromRole="tbl_RiskAss_Assessment" ToRole="tbl_RiskAss_Session" />
+    <Property Name="TotalNoOfQuestions" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_RiskAss_RiskLevel" Relationship="fall_reliefModel.FK__tbl_RiskA__Asses__42E1EEFE" FromRole="tbl_RiskAss_Assessment" ToRole="tbl_RiskAss_RiskLevel" />
+  </EntityType>
+  <EntityType Name="tbl_RiskAss_Session">
+    <Key>
+      <PropertyRef Name="AssessmentNo" />
+    </Key>
+    <Property Name="sessionID" Type="Guid" Nullable="false" />
+    <Property Name="timeStamp" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="AssessmentTypeID" Type="Int32" Nullable="false" />
+    <Property Name="AssessmentNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="tbl_RiskAss_Assessment" Relationship="fall_reliefModel.FK__tbl_RiskA__Asses__19DFD96B" FromRole="tbl_RiskAss_Session" ToRole="tbl_RiskAss_Assessment" />
+    <NavigationProperty Name="tbl_RiskAss_AssessmentResponse" Relationship="fall_reliefModel.FK__tbl_RiskA__Asses__339FAB6E" FromRole="tbl_RiskAss_Session" ToRole="tbl_RiskAss_AssessmentResponse" />
+  </EntityType>
+  <EntityContainer Name="fall_reliefEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_RiskAss_Assessment" EntityType="Self.tbl_RiskAss_Assessment" />
+    <EntitySet Name="tbl_RiskAss_Session" EntityType="Self.tbl_RiskAss_Session" />
+    <EntitySet Name="tbl_RiskAss_Questions" EntityType="fall_reliefModel.tbl_RiskAss_Questions" />
+    <EntitySet Name="tbl_RiskAss_AssQuestion" EntityType="fall_reliefModel.tbl_RiskAss_AssQuestion" />
+    <AssociationSet Name="FK__tbl_RiskA__Asses__151B244E" Association="fall_reliefModel.FK__tbl_RiskA__Asses__151B244E">
+      <End Role="tbl_RiskAss_Assessment" EntitySet="tbl_RiskAss_Assessment" />
+      <End Role="tbl_RiskAss_AssQuestion" EntitySet="tbl_RiskAss_AssQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_RiskA__Quest__18EBB532" Association="fall_reliefModel.FK__tbl_RiskA__Quest__18EBB532">
+      <End Role="tbl_RiskAss_Questions" EntitySet="tbl_RiskAss_Questions" />
+      <End Role="tbl_RiskAss_AssQuestion" EntitySet="tbl_RiskAss_AssQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_RiskA__Asses__19DFD96B" Association="fall_reliefModel.FK__tbl_RiskA__Asses__19DFD96B">
+      <End Role="tbl_RiskAss_Assessment" EntitySet="tbl_RiskAss_Assessment" />
+      <End Role="tbl_RiskAss_Session" EntitySet="tbl_RiskAss_Session" />
+    </AssociationSet>
+    <EntitySet Name="tbl_RiskAss_ResponseChoice" EntityType="fall_reliefModel.tbl_RiskAss_ResponseChoice" />
+    <AssociationSet Name="FK__Risk_Ass___Quest__1CBC4616" Association="fall_reliefModel.FK__Risk_Ass___Quest__1CBC4616">
+      <End Role="tbl_RiskAss_Questions" EntitySet="tbl_RiskAss_Questions" />
+      <End Role="tbl_RiskAss_ResponseChoice" EntitySet="tbl_RiskAss_ResponseChoice" />
+    </AssociationSet>
+    <EntitySet Name="vw_RiskAss_RiskLevel" EntityType="fall_reliefModel.vw_RiskAss_RiskLevel" />
+    <EntitySet Name="vw_RiskAss_RiskStatement" EntityType="fall_reliefModel.vw_RiskAss_RiskStatement" />
+    <EntitySet Name="tbl_RiskAss_AssessmentResponse" EntityType="fall_reliefModel.tbl_RiskAss_AssessmentResponse" />
+    <EntitySet Name="tbl_RiskAss_RiskLevel" EntityType="fall_reliefModel.tbl_RiskAss_RiskLevel" />
+    <AssociationSet Name="FK__tbl_RiskA__Asses__42E1EEFE" Association="fall_reliefModel.FK__tbl_RiskA__Asses__42E1EEFE">
+      <End Role="tbl_RiskAss_Assessment" EntitySet="tbl_RiskAss_Assessment" />
+      <End Role="tbl_RiskAss_RiskLevel" EntitySet="tbl_RiskAss_RiskLevel" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_RiskA__Asses__339FAB6E" Association="fall_reliefModel.FK__tbl_RiskA__Asses__339FAB6E">
+      <End Role="tbl_RiskAss_Session" EntitySet="tbl_RiskAss_Session" />
+      <End Role="tbl_RiskAss_AssessmentResponse" EntitySet="tbl_RiskAss_AssessmentResponse" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_RiskA__AssQu__3493CFA7" Association="fall_reliefModel.FK__tbl_RiskA__AssQu__3493CFA7">
+      <End Role="tbl_RiskAss_AssQuestion" EntitySet="tbl_RiskAss_AssQuestion" />
+      <End Role="tbl_RiskAss_AssessmentResponse" EntitySet="tbl_RiskAss_AssessmentResponse" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_RiskA__respo__3587F3E0" Association="fall_reliefModel.FK__tbl_RiskA__respo__3587F3E0">
+      <End Role="tbl_RiskAss_ResponseChoice" EntitySet="tbl_RiskAss_ResponseChoice" />
+      <End Role="tbl_RiskAss_AssessmentResponse" EntitySet="tbl_RiskAss_AssessmentResponse" />
+    </AssociationSet>
+    <EntitySet Name="tbl_ActionPlan_FoodNutrient" EntityType="fall_reliefModel.tbl_ActionPlan_FoodNutrient" />
+    <EntitySet Name="tbl_ActionPlan_HomeSafety" EntityType="fall_reliefModel.tbl_ActionPlan_HomeSafety" />
+    <EntitySet Name="tbl_ActionPlan_Nutrient" EntityType="fall_reliefModel.tbl_ActionPlan_Nutrient" />
+    <EntitySet Name="tbl_ActionPlan_Nutrition" EntityType="fall_reliefModel.tbl_ActionPlan_Nutrition" />
+    <EntitySet Name="tbl_ActionPlan_RiskStatement" EntityType="fall_reliefModel.tbl_ActionPlan_RiskStatement" />
+    <EntitySet Name="vw_ActionPlan_HomeSafety" EntityType="fall_reliefModel.vw_ActionPlan_HomeSafety" />
+    <EntitySet Name="vw_ActionPlan_Nutrition" EntityType="fall_reliefModel.vw_ActionPlan_Nutrition" />
+    <AssociationSet Name="FK__tbl_Actio__Nutri__5AB9788F" Association="fall_reliefModel.FK__tbl_Actio__Nutri__5AB9788F">
+      <End Role="tbl_ActionPlan_Nutrient" EntitySet="tbl_ActionPlan_Nutrient" />
+      <End Role="tbl_ActionPlan_FoodNutrient" EntitySet="tbl_ActionPlan_FoodNutrient" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Actio__Quest__540C7B00" Association="fall_reliefModel.FK__tbl_Actio__Quest__540C7B00">
+      <End Role="tbl_RiskAss_Questions" EntitySet="tbl_RiskAss_Questions" />
+      <End Role="tbl_ActionPlan_HomeSafety" EntitySet="tbl_ActionPlan_HomeSafety" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Actio__Nutri__58D1301D" Association="fall_reliefModel.FK__tbl_Actio__Nutri__58D1301D">
+      <End Role="tbl_ActionPlan_Nutrient" EntitySet="tbl_ActionPlan_Nutrient" />
+      <End Role="tbl_ActionPlan_Nutrition" EntitySet="tbl_ActionPlan_Nutrition" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Actio__Quest__55009F39" Association="fall_reliefModel.FK__tbl_Actio__Quest__55009F39">
+      <End Role="tbl_RiskAss_Questions" EntitySet="tbl_RiskAss_Questions" />
+      <End Role="tbl_ActionPlan_Nutrition" EntitySet="tbl_ActionPlan_Nutrition" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Actio__Quest__40058253" Association="fall_reliefModel.FK__tbl_Actio__Quest__40058253">
+      <End Role="tbl_RiskAss_Questions" EntitySet="tbl_RiskAss_Questions" />
+      <End Role="tbl_ActionPlan_RiskStatement" EntitySet="tbl_ActionPlan_RiskStatement" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tbl_RiskAss_Questions">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionSection" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Question" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_RiskAss_AssQuestion" Relationship="fall_reliefModel.FK__tbl_RiskA__Quest__18EBB532" FromRole="tbl_RiskAss_Questions" ToRole="tbl_RiskAss_AssQuestion" />
+    <NavigationProperty Name="tbl_RiskAss_ResponseChoice" Relationship="fall_reliefModel.FK__Risk_Ass___Quest__1CBC4616" FromRole="tbl_RiskAss_Questions" ToRole="tbl_RiskAss_ResponseChoice" />
+    <Property Name="AnswerType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="RiskScore" Type="Int32" />
+    <NavigationProperty Name="tbl_ActionPlan_HomeSafety" Relationship="fall_reliefModel.FK__tbl_Actio__Quest__540C7B00" FromRole="tbl_RiskAss_Questions" ToRole="tbl_ActionPlan_HomeSafety" />
+    <NavigationProperty Name="tbl_ActionPlan_Nutrition" Relationship="fall_reliefModel.FK__tbl_Actio__Quest__55009F39" FromRole="tbl_RiskAss_Questions" ToRole="tbl_ActionPlan_Nutrition" />
+    <NavigationProperty Name="tbl_ActionPlan_RiskStatement" Relationship="fall_reliefModel.FK__tbl_Actio__Quest__40058253" FromRole="tbl_RiskAss_Questions" ToRole="tbl_ActionPlan_RiskStatement" />
+  </EntityType>
+  <EntityType Name="tbl_RiskAss_AssQuestion">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AssessmentTypeID" Type="Int32" Nullable="false" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+    <Property Name="QuestionNumber" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_RiskAss_Assessment" Relationship="fall_reliefModel.FK__tbl_RiskA__Asses__151B244E" FromRole="tbl_RiskAss_AssQuestion" ToRole="tbl_RiskAss_Assessment" />
+    <NavigationProperty Name="tbl_RiskAss_Questions" Relationship="fall_reliefModel.FK__tbl_RiskA__Quest__18EBB532" FromRole="tbl_RiskAss_AssQuestion" ToRole="tbl_RiskAss_Questions" />
+    <NavigationProperty Name="tbl_RiskAss_AssessmentResponse" Relationship="fall_reliefModel.FK__tbl_RiskA__AssQu__3493CFA7" FromRole="tbl_RiskAss_AssQuestion" ToRole="tbl_RiskAss_AssessmentResponse" />
+  </EntityType>
+  <Association Name="FK__tbl_RiskA__Asses__151B244E">
+    <End Type="fall_reliefModel.tbl_RiskAss_Assessment" Role="tbl_RiskAss_Assessment" Multiplicity="1" />
+    <End Type="fall_reliefModel.tbl_RiskAss_AssQuestion" Role="tbl_RiskAss_AssQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Assessment">
+        <PropertyRef Name="AssessmentTypeID" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_AssQuestion">
+        <PropertyRef Name="AssessmentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_RiskA__Quest__18EBB532">
+    <End Type="fall_reliefModel.tbl_RiskAss_Questions" Role="tbl_RiskAss_Questions" Multiplicity="1" />
+    <End Type="fall_reliefModel.tbl_RiskAss_AssQuestion" Role="tbl_RiskAss_AssQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Questions">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_AssQuestion">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_RiskA__Asses__19DFD96B">
+    <End Type="fall_reliefModel.tbl_RiskAss_Assessment" Role="tbl_RiskAss_Assessment" Multiplicity="1" />
+    <End Type="fall_reliefModel.tbl_RiskAss_Session" Role="tbl_RiskAss_Session" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Assessment">
+        <PropertyRef Name="AssessmentTypeID" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_Session">
+        <PropertyRef Name="AssessmentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tbl_RiskAss_ResponseChoice">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+    <Property Name="Response" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RiskScore" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_RiskAss_Questions" Relationship="fall_reliefModel.FK__Risk_Ass___Quest__1CBC4616" FromRole="tbl_RiskAss_ResponseChoice" ToRole="tbl_RiskAss_Questions" />
+    <Property Name="actionRequired" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbl_RiskAss_AssessmentResponse" Relationship="fall_reliefModel.FK__tbl_RiskA__respo__3587F3E0" FromRole="tbl_RiskAss_ResponseChoice" ToRole="tbl_RiskAss_AssessmentResponse" />
+  </EntityType>
+  <Association Name="FK__Risk_Ass___Quest__1CBC4616">
+    <End Type="fall_reliefModel.tbl_RiskAss_Questions" Role="tbl_RiskAss_Questions" Multiplicity="1" />
+    <End Type="fall_reliefModel.tbl_RiskAss_ResponseChoice" Role="tbl_RiskAss_ResponseChoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Questions">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_ResponseChoice">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="vw_RiskAss_RiskLevel">
+    <Key>
+      <PropertyRef Name="AssessmentNo" />
+      <PropertyRef Name="AssessmentTypeID" />
+      <PropertyRef Name="AssessmentType" />
+      <PropertyRef Name="RiskLevel" />
+    </Key>
+    <Property Name="AssessmentNo" Type="Int32" Nullable="false" />
+    <Property Name="AssessmentTypeID" Type="Int32" Nullable="false" />
+    <Property Name="AssessmentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RiskScore" Type="Int32" />
+    <Property Name="RiskLevel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vw_RiskAss_RiskStatement">
+    <Key>
+      <PropertyRef Name="AssessmentNo" />
+      <PropertyRef Name="AssessmentType" />
+      <PropertyRef Name="Risk" />
+      <PropertyRef Name="Risk_Statement" />
+    </Key>
+    <Property Name="AssessmentNo" Type="Int32" Nullable="false" />
+    <Property Name="AssessmentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="QuestionSection" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Risk" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Risk_Statement" Type="String" Nullable="false" MaxLength="800" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_RiskAss_AssessmentResponse">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="AssessmentNo" Type="Int32" Nullable="false" />
+    <Property Name="AssQuestionID" Type="Int32" Nullable="false" />
+    <Property Name="responseID" Type="Int32" Nullable="false" />
+    <Property Name="Answer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_RiskAss_Session" Relationship="fall_reliefModel.FK__tbl_RiskA__Asses__339FAB6E" FromRole="tbl_RiskAss_AssessmentResponse" ToRole="tbl_RiskAss_Session" />
+    <NavigationProperty Name="tbl_RiskAss_AssQuestion" Relationship="fall_reliefModel.FK__tbl_RiskA__AssQu__3493CFA7" FromRole="tbl_RiskAss_AssessmentResponse" ToRole="tbl_RiskAss_AssQuestion" />
+    <NavigationProperty Name="tbl_RiskAss_ResponseChoice" Relationship="fall_reliefModel.FK__tbl_RiskA__respo__3587F3E0" FromRole="tbl_RiskAss_AssessmentResponse" ToRole="tbl_RiskAss_ResponseChoice" />
+  </EntityType>
+  <EntityType Name="tbl_RiskAss_RiskLevel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AssessmentTypeID" Type="Int32" Nullable="false" />
+    <Property Name="RiskLevel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LowerLimit" Type="Int32" Nullable="false" />
+    <Property Name="UpperLimit" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_RiskAss_Assessment" Relationship="fall_reliefModel.FK__tbl_RiskA__Asses__42E1EEFE" FromRole="tbl_RiskAss_RiskLevel" ToRole="tbl_RiskAss_Assessment" />
+  </EntityType>
+  <Association Name="FK__tbl_RiskA__Asses__42E1EEFE">
+    <End Type="fall_reliefModel.tbl_RiskAss_Assessment" Role="tbl_RiskAss_Assessment" Multiplicity="1" />
+    <End Type="fall_reliefModel.tbl_RiskAss_RiskLevel" Role="tbl_RiskAss_RiskLevel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Assessment">
+        <PropertyRef Name="AssessmentTypeID" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_RiskLevel">
+        <PropertyRef Name="AssessmentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_RiskA__Asses__339FAB6E">
+    <End Type="fall_reliefModel.tbl_RiskAss_Session" Role="tbl_RiskAss_Session" Multiplicity="1" />
+    <End Type="fall_reliefModel.tbl_RiskAss_AssessmentResponse" Role="tbl_RiskAss_AssessmentResponse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Session">
+        <PropertyRef Name="AssessmentNo" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_AssessmentResponse">
+        <PropertyRef Name="AssessmentNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_RiskA__AssQu__3493CFA7">
+    <End Type="fall_reliefModel.tbl_RiskAss_AssQuestion" Role="tbl_RiskAss_AssQuestion" Multiplicity="1" />
+    <End Type="fall_reliefModel.tbl_RiskAss_AssessmentResponse" Role="tbl_RiskAss_AssessmentResponse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_AssQuestion">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_AssessmentResponse">
+        <PropertyRef Name="AssQuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_RiskA__respo__3587F3E0">
+    <End Type="fall_reliefModel.tbl_RiskAss_ResponseChoice" Role="tbl_RiskAss_ResponseChoice" Multiplicity="1" />
+    <End Type="fall_reliefModel.tbl_RiskAss_AssessmentResponse" Role="tbl_RiskAss_AssessmentResponse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_ResponseChoice">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_AssessmentResponse">
+        <PropertyRef Name="responseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tbl_ActionPlan_FoodNutrient">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FoodName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NutrientID" Type="Int32" Nullable="false" />
+    <Property Name="NutrientName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="Double" Nullable="false" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rank" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_ActionPlan_Nutrient" Relationship="fall_reliefModel.FK__tbl_Actio__Nutri__5AB9788F" FromRole="tbl_ActionPlan_FoodNutrient" ToRole="tbl_ActionPlan_Nutrient" />
+  </EntityType>
+  <EntityType Name="tbl_ActionPlan_HomeSafety">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+    <Property Name="Risk" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Location_Room" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Who" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_RiskAss_Questions" Relationship="fall_reliefModel.FK__tbl_Actio__Quest__540C7B00" FromRole="tbl_ActionPlan_HomeSafety" ToRole="tbl_RiskAss_Questions" />
+  </EntityType>
+  <EntityType Name="tbl_ActionPlan_Nutrient">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Nutrient_RawName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NutrientName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Unit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_ActionPlan_FoodNutrient" Relationship="fall_reliefModel.FK__tbl_Actio__Nutri__5AB9788F" FromRole="tbl_ActionPlan_Nutrient" ToRole="tbl_ActionPlan_FoodNutrient" />
+    <NavigationProperty Name="tbl_ActionPlan_Nutrition" Relationship="fall_reliefModel.FK__tbl_Actio__Nutri__58D1301D" FromRole="tbl_ActionPlan_Nutrient" ToRole="tbl_ActionPlan_Nutrition" />
+  </EntityType>
+  <EntityType Name="tbl_ActionPlan_Nutrition">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+    <Property Name="Risk" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nutrient" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NutrientID" Type="Int32" />
+    <NavigationProperty Name="tbl_ActionPlan_Nutrient" Relationship="fall_reliefModel.FK__tbl_Actio__Nutri__58D1301D" FromRole="tbl_ActionPlan_Nutrition" ToRole="tbl_ActionPlan_Nutrient" />
+    <NavigationProperty Name="tbl_RiskAss_Questions" Relationship="fall_reliefModel.FK__tbl_Actio__Quest__55009F39" FromRole="tbl_ActionPlan_Nutrition" ToRole="tbl_RiskAss_Questions" />
+  </EntityType>
+  <EntityType Name="tbl_ActionPlan_RiskStatement">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionNo" Type="Int32" Nullable="false" />
+    <Property Name="Risk" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Risk_Statement" Type="String" Nullable="false" MaxLength="800" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_RiskAss_Questions" Relationship="fall_reliefModel.FK__tbl_Actio__Quest__40058253" FromRole="tbl_ActionPlan_RiskStatement" ToRole="tbl_RiskAss_Questions" />
+  </EntityType>
+  <EntityType Name="vw_ActionPlan_HomeSafety">
+    <Key>
+      <PropertyRef Name="AssessmentNo" />
+      <PropertyRef Name="Risk" />
+      <PropertyRef Name="Action" />
+    </Key>
+    <Property Name="AssessmentNo" Type="Int32" Nullable="false" />
+    <Property Name="Risk" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Location_Room" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Who" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vw_ActionPlan_Nutrition">
+    <Key>
+      <PropertyRef Name="AssessmentNo" />
+      <PropertyRef Name="risk" />
+      <PropertyRef Name="Nutrient" />
+      <PropertyRef Name="FoodName" />
+    </Key>
+    <Property Name="AssessmentNo" Type="Int32" Nullable="false" />
+    <Property Name="risk" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nutrient" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FoodName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Food_Rank" Type="Int64" />
+  </EntityType>
+  <Association Name="FK__tbl_Actio__Nutri__5AB9788F">
+    <End Type="fall_reliefModel.tbl_ActionPlan_Nutrient" Role="tbl_ActionPlan_Nutrient" Multiplicity="1" />
+    <End Type="fall_reliefModel.tbl_ActionPlan_FoodNutrient" Role="tbl_ActionPlan_FoodNutrient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ActionPlan_Nutrient">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_ActionPlan_FoodNutrient">
+        <PropertyRef Name="NutrientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Actio__Quest__540C7B00">
+    <End Type="fall_reliefModel.tbl_RiskAss_Questions" Role="tbl_RiskAss_Questions" Multiplicity="1" />
+    <End Type="fall_reliefModel.tbl_ActionPlan_HomeSafety" Role="tbl_ActionPlan_HomeSafety" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Questions">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="tbl_ActionPlan_HomeSafety">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Actio__Nutri__58D1301D">
+    <End Type="fall_reliefModel.tbl_ActionPlan_Nutrient" Role="tbl_ActionPlan_Nutrient" Multiplicity="0..1" />
+    <End Type="fall_reliefModel.tbl_ActionPlan_Nutrition" Role="tbl_ActionPlan_Nutrition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ActionPlan_Nutrient">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_ActionPlan_Nutrition">
+        <PropertyRef Name="NutrientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Actio__Quest__55009F39">
+    <End Type="fall_reliefModel.tbl_RiskAss_Questions" Role="tbl_RiskAss_Questions" Multiplicity="1" />
+    <End Type="fall_reliefModel.tbl_ActionPlan_Nutrition" Role="tbl_ActionPlan_Nutrition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Questions">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="tbl_ActionPlan_Nutrition">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Actio__Quest__40058253">
+    <End Type="fall_reliefModel.tbl_RiskAss_Questions" Role="tbl_RiskAss_Questions" Multiplicity="1" />
+    <End Type="fall_reliefModel.tbl_ActionPlan_RiskStatement" Role="tbl_ActionPlan_RiskStatement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Questions">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="tbl_ActionPlan_RiskStatement">
+        <PropertyRef Name="QuestionNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

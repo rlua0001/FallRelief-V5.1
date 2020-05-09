@@ -1,0 +1,442 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="fall_reliefModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_ActionPlan_FoodNutrient">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NutrientID" Type="int" Nullable="false" />
+    <Property Name="NutrientName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Value" Type="float" Nullable="false" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rank" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_ActionPlan_HomeSafety">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionID" Type="int" Nullable="false" />
+    <Property Name="Risk" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Action" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Location_Room" Type="nvarchar" MaxLength="200" />
+    <Property Name="Who" Type="nvarchar" MaxLength="200" />
+    <Property Name="Status" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tbl_ActionPlan_Nutrient">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Nutrient_RawName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NutrientName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_ActionPlan_Nutrition">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionID" Type="int" Nullable="false" />
+    <Property Name="Risk" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nutrient" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NutrientID" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_ActionPlan_RiskStatement">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionNo" Type="int" Nullable="false" />
+    <Property Name="Risk" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Risk_Statement" Type="nvarchar" MaxLength="800" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_RiskAss_Assessment">
+    <Key>
+      <PropertyRef Name="AssessmentTypeID" />
+    </Key>
+    <Property Name="AssessmentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AssessmentType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="TotalNoOfQuestions" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_RiskAss_AssessmentResponse">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AssessmentNo" Type="int" Nullable="false" />
+    <Property Name="AssQuestionID" Type="int" Nullable="false" />
+    <Property Name="responseID" Type="int" Nullable="false" />
+    <Property Name="Answer" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_RiskAss_AssQuestion">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AssessmentTypeID" Type="int" Nullable="false" />
+    <Property Name="QuestionID" Type="int" Nullable="false" />
+    <Property Name="QuestionNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_RiskAss_Questions">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionSection" Type="nvarchar" MaxLength="50" />
+    <Property Name="Question" Type="nvarchar" MaxLength="500" />
+    <Property Name="AnswerType" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="RiskScore" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_RiskAss_ResponseChoice">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionID" Type="int" Nullable="false" />
+    <Property Name="Response" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RiskScore" Type="int" Nullable="false" />
+    <Property Name="actionRequired" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_RiskAss_RiskLevel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AssessmentTypeID" Type="int" Nullable="false" />
+    <Property Name="RiskLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LowerLimit" Type="int" Nullable="false" />
+    <Property Name="UpperLimit" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_RiskAss_Session">
+    <Key>
+      <PropertyRef Name="AssessmentNo" />
+    </Key>
+    <Property Name="AssessmentNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sessionID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="timeStamp" Type="datetime" Nullable="false" />
+    <Property Name="AssessmentTypeID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'fall_relief.dbo.vw_ActionPlan_HomeSafety' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_ActionPlan_HomeSafety">
+    <Key>
+      <PropertyRef Name="AssessmentNo" />
+      <PropertyRef Name="Risk" />
+      <PropertyRef Name="Action" />
+    </Key>
+    <Property Name="AssessmentNo" Type="int" Nullable="false" />
+    <Property Name="Risk" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Action" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Location_Room" Type="nvarchar" MaxLength="200" />
+    <Property Name="Who" Type="nvarchar" MaxLength="200" />
+    <Property Name="Status" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'fall_relief.dbo.vw_ActionPlan_Nutrition' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_ActionPlan_Nutrition">
+    <Key>
+      <PropertyRef Name="AssessmentNo" />
+      <PropertyRef Name="risk" />
+      <PropertyRef Name="Nutrient" />
+      <PropertyRef Name="FoodName" />
+    </Key>
+    <Property Name="AssessmentNo" Type="int" Nullable="false" />
+    <Property Name="risk" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nutrient" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FoodName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Food Rank" Type="bigint" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'fall_relief.dbo.vw_RiskAss_RiskLevel' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_RiskAss_RiskLevel">
+    <Key>
+      <PropertyRef Name="AssessmentNo" />
+      <PropertyRef Name="AssessmentTypeID" />
+      <PropertyRef Name="AssessmentType" />
+      <PropertyRef Name="RiskLevel" />
+    </Key>
+    <Property Name="AssessmentNo" Type="int" Nullable="false" />
+    <Property Name="AssessmentTypeID" Type="int" Nullable="false" />
+    <Property Name="AssessmentType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RiskScore" Type="int" />
+    <Property Name="RiskLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'fall_relief.dbo.vw_RiskAss_RiskStatement' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_RiskAss_RiskStatement">
+    <Key>
+      <PropertyRef Name="AssessmentNo" />
+      <PropertyRef Name="AssessmentType" />
+      <PropertyRef Name="Risk" />
+      <PropertyRef Name="Risk_Statement" />
+    </Key>
+    <Property Name="AssessmentNo" Type="int" Nullable="false" />
+    <Property Name="AssessmentType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="QuestionSection" Type="nvarchar" MaxLength="50" />
+    <Property Name="Risk" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Risk_Statement" Type="nvarchar" MaxLength="800" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Risk_Ass___Quest__1CBC4616">
+    <End Role="tbl_RiskAss_Questions" Type="Self.tbl_RiskAss_Questions" Multiplicity="1" />
+    <End Role="tbl_RiskAss_ResponseChoice" Type="Self.tbl_RiskAss_ResponseChoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Questions">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_ResponseChoice">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Actio__Nutri__58D1301D">
+    <End Role="tbl_ActionPlan_Nutrient" Type="Self.tbl_ActionPlan_Nutrient" Multiplicity="0..1" />
+    <End Role="tbl_ActionPlan_Nutrition" Type="Self.tbl_ActionPlan_Nutrition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ActionPlan_Nutrient">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_ActionPlan_Nutrition">
+        <PropertyRef Name="NutrientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Actio__Nutri__5AB9788F">
+    <End Role="tbl_ActionPlan_Nutrient" Type="Self.tbl_ActionPlan_Nutrient" Multiplicity="1" />
+    <End Role="tbl_ActionPlan_FoodNutrient" Type="Self.tbl_ActionPlan_FoodNutrient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ActionPlan_Nutrient">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_ActionPlan_FoodNutrient">
+        <PropertyRef Name="NutrientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Actio__Quest__40058253">
+    <End Role="tbl_RiskAss_Questions" Type="Self.tbl_RiskAss_Questions" Multiplicity="1" />
+    <End Role="tbl_ActionPlan_RiskStatement" Type="Self.tbl_ActionPlan_RiskStatement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Questions">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="tbl_ActionPlan_RiskStatement">
+        <PropertyRef Name="QuestionNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Actio__Quest__540C7B00">
+    <End Role="tbl_RiskAss_Questions" Type="Self.tbl_RiskAss_Questions" Multiplicity="1" />
+    <End Role="tbl_ActionPlan_HomeSafety" Type="Self.tbl_ActionPlan_HomeSafety" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Questions">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="tbl_ActionPlan_HomeSafety">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Actio__Quest__55009F39">
+    <End Role="tbl_RiskAss_Questions" Type="Self.tbl_RiskAss_Questions" Multiplicity="1" />
+    <End Role="tbl_ActionPlan_Nutrition" Type="Self.tbl_ActionPlan_Nutrition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Questions">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="tbl_ActionPlan_Nutrition">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_RiskA__Asses__151B244E">
+    <End Role="tbl_RiskAss_Assessment" Type="Self.tbl_RiskAss_Assessment" Multiplicity="1" />
+    <End Role="tbl_RiskAss_AssQuestion" Type="Self.tbl_RiskAss_AssQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Assessment">
+        <PropertyRef Name="AssessmentTypeID" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_AssQuestion">
+        <PropertyRef Name="AssessmentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_RiskA__Asses__19DFD96B">
+    <End Role="tbl_RiskAss_Assessment" Type="Self.tbl_RiskAss_Assessment" Multiplicity="1" />
+    <End Role="tbl_RiskAss_Session" Type="Self.tbl_RiskAss_Session" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Assessment">
+        <PropertyRef Name="AssessmentTypeID" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_Session">
+        <PropertyRef Name="AssessmentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_RiskA__Asses__339FAB6E">
+    <End Role="tbl_RiskAss_Session" Type="Self.tbl_RiskAss_Session" Multiplicity="1" />
+    <End Role="tbl_RiskAss_AssessmentResponse" Type="Self.tbl_RiskAss_AssessmentResponse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Session">
+        <PropertyRef Name="AssessmentNo" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_AssessmentResponse">
+        <PropertyRef Name="AssessmentNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_RiskA__Asses__42E1EEFE">
+    <End Role="tbl_RiskAss_Assessment" Type="Self.tbl_RiskAss_Assessment" Multiplicity="1" />
+    <End Role="tbl_RiskAss_RiskLevel" Type="Self.tbl_RiskAss_RiskLevel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Assessment">
+        <PropertyRef Name="AssessmentTypeID" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_RiskLevel">
+        <PropertyRef Name="AssessmentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_RiskA__AssQu__3493CFA7">
+    <End Role="tbl_RiskAss_AssQuestion" Type="Self.tbl_RiskAss_AssQuestion" Multiplicity="1" />
+    <End Role="tbl_RiskAss_AssessmentResponse" Type="Self.tbl_RiskAss_AssessmentResponse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_AssQuestion">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_AssessmentResponse">
+        <PropertyRef Name="AssQuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_RiskA__Quest__18EBB532">
+    <End Role="tbl_RiskAss_Questions" Type="Self.tbl_RiskAss_Questions" Multiplicity="1" />
+    <End Role="tbl_RiskAss_AssQuestion" Type="Self.tbl_RiskAss_AssQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_Questions">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_AssQuestion">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_RiskA__respo__3587F3E0">
+    <End Role="tbl_RiskAss_ResponseChoice" Type="Self.tbl_RiskAss_ResponseChoice" Multiplicity="1" />
+    <End Role="tbl_RiskAss_AssessmentResponse" Type="Self.tbl_RiskAss_AssessmentResponse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RiskAss_ResponseChoice">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_RiskAss_AssessmentResponse">
+        <PropertyRef Name="responseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="fall_reliefModelStoreContainer">
+    <EntitySet Name="tbl_ActionPlan_FoodNutrient" EntityType="Self.tbl_ActionPlan_FoodNutrient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ActionPlan_HomeSafety" EntityType="Self.tbl_ActionPlan_HomeSafety" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ActionPlan_Nutrient" EntityType="Self.tbl_ActionPlan_Nutrient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ActionPlan_Nutrition" EntityType="Self.tbl_ActionPlan_Nutrition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ActionPlan_RiskStatement" EntityType="Self.tbl_ActionPlan_RiskStatement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_RiskAss_Assessment" EntityType="Self.tbl_RiskAss_Assessment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_RiskAss_AssessmentResponse" EntityType="Self.tbl_RiskAss_AssessmentResponse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_RiskAss_AssQuestion" EntityType="Self.tbl_RiskAss_AssQuestion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_RiskAss_Questions" EntityType="Self.tbl_RiskAss_Questions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_RiskAss_ResponseChoice" EntityType="Self.tbl_RiskAss_ResponseChoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_RiskAss_RiskLevel" EntityType="Self.tbl_RiskAss_RiskLevel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_RiskAss_Session" EntityType="Self.tbl_RiskAss_Session" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_ActionPlan_HomeSafety" EntityType="Self.vw_ActionPlan_HomeSafety" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_ActionPlan_HomeSafety].[AssessmentNo] AS [AssessmentNo], 
+    [vw_ActionPlan_HomeSafety].[Risk] AS [Risk], 
+    [vw_ActionPlan_HomeSafety].[Action] AS [Action], 
+    [vw_ActionPlan_HomeSafety].[Location_Room] AS [Location_Room], 
+    [vw_ActionPlan_HomeSafety].[Who] AS [Who], 
+    [vw_ActionPlan_HomeSafety].[Status] AS [Status]
+    FROM [dbo].[vw_ActionPlan_HomeSafety] AS [vw_ActionPlan_HomeSafety]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_ActionPlan_Nutrition" EntityType="Self.vw_ActionPlan_Nutrition" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_ActionPlan_Nutrition].[AssessmentNo] AS [AssessmentNo], 
+    [vw_ActionPlan_Nutrition].[risk] AS [risk], 
+    [vw_ActionPlan_Nutrition].[Nutrient] AS [Nutrient], 
+    [vw_ActionPlan_Nutrition].[FoodName] AS [FoodName], 
+    [vw_ActionPlan_Nutrition].[Food Rank] AS [Food Rank]
+    FROM [dbo].[vw_ActionPlan_Nutrition] AS [vw_ActionPlan_Nutrition]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_RiskAss_RiskLevel" EntityType="Self.vw_RiskAss_RiskLevel" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_RiskAss_RiskLevel].[AssessmentNo] AS [AssessmentNo], 
+    [vw_RiskAss_RiskLevel].[AssessmentTypeID] AS [AssessmentTypeID], 
+    [vw_RiskAss_RiskLevel].[AssessmentType] AS [AssessmentType], 
+    [vw_RiskAss_RiskLevel].[RiskScore] AS [RiskScore], 
+    [vw_RiskAss_RiskLevel].[RiskLevel] AS [RiskLevel]
+    FROM [dbo].[vw_RiskAss_RiskLevel] AS [vw_RiskAss_RiskLevel]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_RiskAss_RiskStatement" EntityType="Self.vw_RiskAss_RiskStatement" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_RiskAss_RiskStatement].[AssessmentNo] AS [AssessmentNo], 
+    [vw_RiskAss_RiskStatement].[AssessmentType] AS [AssessmentType], 
+    [vw_RiskAss_RiskStatement].[QuestionSection] AS [QuestionSection], 
+    [vw_RiskAss_RiskStatement].[Risk] AS [Risk], 
+    [vw_RiskAss_RiskStatement].[Risk_Statement] AS [Risk_Statement]
+    FROM [dbo].[vw_RiskAss_RiskStatement] AS [vw_RiskAss_RiskStatement]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Risk_Ass___Quest__1CBC4616" Association="Self.FK__Risk_Ass___Quest__1CBC4616">
+      <End Role="tbl_RiskAss_Questions" EntitySet="tbl_RiskAss_Questions" />
+      <End Role="tbl_RiskAss_ResponseChoice" EntitySet="tbl_RiskAss_ResponseChoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Actio__Nutri__58D1301D" Association="Self.FK__tbl_Actio__Nutri__58D1301D">
+      <End Role="tbl_ActionPlan_Nutrient" EntitySet="tbl_ActionPlan_Nutrient" />
+      <End Role="tbl_ActionPlan_Nutrition" EntitySet="tbl_ActionPlan_Nutrition" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Actio__Nutri__5AB9788F" Association="Self.FK__tbl_Actio__Nutri__5AB9788F">
+      <End Role="tbl_ActionPlan_Nutrient" EntitySet="tbl_ActionPlan_Nutrient" />
+      <End Role="tbl_ActionPlan_FoodNutrient" EntitySet="tbl_ActionPlan_FoodNutrient" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Actio__Quest__40058253" Association="Self.FK__tbl_Actio__Quest__40058253">
+      <End Role="tbl_RiskAss_Questions" EntitySet="tbl_RiskAss_Questions" />
+      <End Role="tbl_ActionPlan_RiskStatement" EntitySet="tbl_ActionPlan_RiskStatement" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Actio__Quest__540C7B00" Association="Self.FK__tbl_Actio__Quest__540C7B00">
+      <End Role="tbl_RiskAss_Questions" EntitySet="tbl_RiskAss_Questions" />
+      <End Role="tbl_ActionPlan_HomeSafety" EntitySet="tbl_ActionPlan_HomeSafety" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Actio__Quest__55009F39" Association="Self.FK__tbl_Actio__Quest__55009F39">
+      <End Role="tbl_RiskAss_Questions" EntitySet="tbl_RiskAss_Questions" />
+      <End Role="tbl_ActionPlan_Nutrition" EntitySet="tbl_ActionPlan_Nutrition" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_RiskA__Asses__151B244E" Association="Self.FK__tbl_RiskA__Asses__151B244E">
+      <End Role="tbl_RiskAss_Assessment" EntitySet="tbl_RiskAss_Assessment" />
+      <End Role="tbl_RiskAss_AssQuestion" EntitySet="tbl_RiskAss_AssQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_RiskA__Asses__19DFD96B" Association="Self.FK__tbl_RiskA__Asses__19DFD96B">
+      <End Role="tbl_RiskAss_Assessment" EntitySet="tbl_RiskAss_Assessment" />
+      <End Role="tbl_RiskAss_Session" EntitySet="tbl_RiskAss_Session" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_RiskA__Asses__339FAB6E" Association="Self.FK__tbl_RiskA__Asses__339FAB6E">
+      <End Role="tbl_RiskAss_Session" EntitySet="tbl_RiskAss_Session" />
+      <End Role="tbl_RiskAss_AssessmentResponse" EntitySet="tbl_RiskAss_AssessmentResponse" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_RiskA__Asses__42E1EEFE" Association="Self.FK__tbl_RiskA__Asses__42E1EEFE">
+      <End Role="tbl_RiskAss_Assessment" EntitySet="tbl_RiskAss_Assessment" />
+      <End Role="tbl_RiskAss_RiskLevel" EntitySet="tbl_RiskAss_RiskLevel" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_RiskA__AssQu__3493CFA7" Association="Self.FK__tbl_RiskA__AssQu__3493CFA7">
+      <End Role="tbl_RiskAss_AssQuestion" EntitySet="tbl_RiskAss_AssQuestion" />
+      <End Role="tbl_RiskAss_AssessmentResponse" EntitySet="tbl_RiskAss_AssessmentResponse" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_RiskA__Quest__18EBB532" Association="Self.FK__tbl_RiskA__Quest__18EBB532">
+      <End Role="tbl_RiskAss_Questions" EntitySet="tbl_RiskAss_Questions" />
+      <End Role="tbl_RiskAss_AssQuestion" EntitySet="tbl_RiskAss_AssQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_RiskA__respo__3587F3E0" Association="Self.FK__tbl_RiskA__respo__3587F3E0">
+      <End Role="tbl_RiskAss_ResponseChoice" EntitySet="tbl_RiskAss_ResponseChoice" />
+      <End Role="tbl_RiskAss_AssessmentResponse" EntitySet="tbl_RiskAss_AssessmentResponse" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

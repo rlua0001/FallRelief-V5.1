@@ -1,0 +1,22 @@
+﻿@model  RiskAssessment.Models.RiskLevelModel
+
+
+<h2>AssessmentResult</h2>
+@ViewBag.AssessmentType
+            @ViewBag.RiskScore
+            @ViewBag.RiskLevel
+
+<div>
+    @for (int i = 0; i < Model.RiskList.Count; i++)
+    {
+
+        <span style="color: red">@Html.Raw(Model.RiskList[i].RiskName)"</span>
+        <br />
+        <br />
+        <span style="color: blue">@Html.Raw(Model.RiskList[i].RiskStatement)"</span>
+        <img src="@Html.Raw(Model.RiskList[i].ImgDir)" />
+
+    }
+
+
+</div>
